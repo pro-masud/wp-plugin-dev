@@ -27,7 +27,9 @@ function word_count_filter_action($content){
     $words = strip_tags($content);
     $word_count = str_word_count($words);
     $label = __("Word Count Text Here:", "word-count");
-    $content .= sprintf("<h2>%s : %s</h2>", $label, $word_count);
+    $label = apply_filters("word_count_dametext", $label);
+    $tag = apply_filters("word_count_tags", "h2");
+    $content .= sprintf('<%s>%s : %s</%s>', $tag, $label, $word_count, $tag);
     return $content;
 }
 add_filter('the_content', 'word_count_filter_action');
