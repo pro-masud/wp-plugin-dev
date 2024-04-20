@@ -12,12 +12,17 @@
 */
 
 class DevPro{
-    public function __construct(){
-        add_action("plugin_loaded", array($this, 'load_textdomain'));
+    function __construct(){
+        add_action("plugin_loaded", array($this, 'devpro_load_front_assets'));
+        add_action("wp_enqueue_scripts", array($this, 'devpro_load_textdomain'));
     }
 
-    public function load_textdomain(){
-        wp_enqueue_scripts('dev-pro', false, plugin_dir_url(__FILE__). "/languages");
+    function devpro_load_front_assets(){
+        // front-end file loading here
+        wp_enqueue_script('dev-pro-main', plugin_dir_url(__FILE__)."/assets/public/js/main.js", ['jquery'], '1.0.0', true);
+    }
+    function devpro_load_textdomain(){
+        load_plugin_textdomain('dev-pro', false, plugin_dir_url(__FILE__)."/languages");
     }
 }
 

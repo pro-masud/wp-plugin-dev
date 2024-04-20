@@ -21,7 +21,6 @@ function word_count_text_domain_load(){
 
  add_action("plugins_loaded", "word_count_text_domain_load");
 
-
 //  the content filter 
 function word_count_filter_action($content){
     $words = strip_tags($content);
